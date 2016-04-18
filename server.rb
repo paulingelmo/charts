@@ -8,3 +8,6 @@ end
 get '/chart2' do
   File.read(File.join('chart2.html'))
 end
+get '/chart3' do
+  File.read(File.join('chart3.html'))
+end

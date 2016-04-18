@@ -34,7 +34,11 @@
           'height':500,
           'hAxis': {title:'Age'},
           'vAxis': {title:'Weight'},
-          'trendlines': {0: {} }
+          'trendlines': {0: {
+            type: 'linear',
+            showR2: true,
+            visibleInLegend: true
+          } }
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -57,8 +61,8 @@
   </head>
 
   <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart"></div>
     <a href='/chart1'>Chart 1</a>
+    <a href='/chart3'>Chart 3</a>
+    <div id="chart"></div>
   </body>
 </html>
