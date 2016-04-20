@@ -38,7 +38,12 @@
             type: 'linear',
             showR2: true,
             visibleInLegend: true
-          } }
+          } },
+          animation: {
+            duration: 500,
+            easing: 'linear',
+            startup: true
+          }
         };
 
         // Instantiate and draw our chart, passing in some options.
@@ -63,6 +68,7 @@
   <body>
     <a href='/chart1'>Chart 1</a>
     <a href='/chart3'>Chart 3</a>
+    <a href='/sample'>Sample</a>
     <div id="chart"></div>
   </body>
 </html>

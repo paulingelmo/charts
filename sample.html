@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages': ['corechart']});
+
+      google.charts.setOnLoadCallback(makeQuery);
+
+      function makeQuery() {
+
+        fetch('/sampledata').then(function(response) {
+          return response.json().then(function(json) {
+            var data = json;
+            var ethnicityChartData = data.marketData.race;
+            var populationChartData = data.marketData.population;
+
+            drawChart(ethnicityChartData, populationChartData);
+          });
+        });
+
+        // $.ajax({
+        //   url: '/sampledata',
+        //   dataType: 'json',
+        // }).done(function(data) {
+        //
+        //   var ethnicityChartData = data.marketData.race;
+        //   var populationChartData = data.marketData.population;
+        //
+        //   drawChart(ethnicityChartData, populationChartData);
+        //
+        // });
+
+      }
+
+      function drawChart(ethnicityChartData, populationChartData) {
+
+        var ethnicityData = ethnicityChartData;
+
+        var chartColors = ["#353736", "#717370", "#999B9A", "#C3C3C3", "#EBEBE9", "#F5F5F5"];
+        var chartData = [['Ethnicity', 'Number of People']];
+
+        for (i = 0; i < ethnicityData.length; i++) {
+          chartData.push([ethnicityData[i].name, ethnicityData[i].value]);
+        }
+
+        var dataTable = google.visualization.arrayToDataTable(chartData);
+
+        var options = {
+        	legend: {position: 'right', alignment: 'center', maxLines: 8},
+        	width: 315,
+        	height: 180,
+        	chartArea: {width: "100%", top: 50},
+        	colors: chartColors,
+        	sliceVisibilityThreshold: 0,
+        	pieSliceText: 'none',
+        	backgroundColor: 'transparent'
+        };
+
+        var chartDiv = document.getElementById('ethnicityChart');
+        if (chartDiv) {
+        	var chart = new google.visualization.PieChart(chartDiv);
+        	chart.draw(dataTable, options);
+        }
+
+        //---------------------------------------
+
+        var populationData = populationChartData;
+
+        var data = google.visualization.arrayToDataTable([
+        	['Year', 'Population'],
+        	['2000', populationData.pop2000],
+        	['2010', populationData.pop2010],
+        	['Current Estimated', populationData.popEst]
+        ]);
+
+        var options = {
+        	legend: {position: 'none'},
+        	colors: ['#103E64'],
+        	width: 315,
+        	height: 180,
+        	chartArea: {width: "60%", left: 75, top: 55, height: "50%"}
+        };
+
+        var chartDiv = document.getElementById('populationChart');
+        if (chartDiv) {
+        	var chart = new google.visualization.ColumnChart(chartDiv);
+        	chart.draw(data, options);
+        }
+
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <a href='/chart1'>Chart 1</a>
+    <a href='/chart2'>Chart 2</a>
+    <a href='/chart3'>Chart 3</a>
+    <div id="charts">
+      <div id="ethnicityChart"></div>
+      <div id="populationChart"></div>
+    </div>
+  </body>
+</html>

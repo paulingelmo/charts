@@ -11,3 +11,10 @@ end
 get '/chart3' do
   File.read(File.join('chart3.html'))
 end
+get '/sample' do
+  File.read(File.join('sample.html'))
+end
+get '/sampledata' do
+  content_type :json
+  File.read('sampledata.json')
+end

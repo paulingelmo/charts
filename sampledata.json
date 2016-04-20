@@ -1,0 +1,54 @@
+{
+  "marketData": {
+    "population": {
+      "pop2000": 20541,
+      "pop2010": 26108,
+      "popEst": 23100
+    },
+    "race": [
+      {
+        "name": "hispanic",
+        "value": 21957,
+        "color": "#103E64"
+      },
+      {
+        "name": "white",
+        "value": 21451,
+        "color": "#2282D2"
+      },
+      {
+        "name": "black",
+        "value": 1409,
+        "color": "#004860"
+      },
+      {
+        "name": "indian",
+        "value": 129,
+        "color": "#00A8DF"
+      },
+      {
+        "name": "asian",
+        "value": 334,
+        "color": "#001C37"
+      },
+      {
+        "name": "hawaiian",
+        "value": 2,
+        "color": "#005FB6"
+      },
+      {
+        "name": "other",
+        "value": 1833,
+        "color": "#00233D"
+      },
+      {
+        "name": "multiple",
+        "value": 950,
+        "color": "#469BE1"
+      }
+    ],
+    "income": {
+      "hhAvgIncome": 35087
+    }
+  }
+}
