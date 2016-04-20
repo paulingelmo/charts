@@ -1,6 +1,6 @@
 <html>
   <head>
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
@@ -10,27 +10,41 @@
 
       function makeQuery() {
 
-        fetch('/sampledata').then(function(response) {
-          return response.json().then(function(json) {
-            var data = json;
-            var ethnicityChartData = data.marketData.race;
-            var populationChartData = data.marketData.population;
+        // fetch('/sampledata').then(function(response) {
+        //   return response.json().then(function(json) {
+        //     var data = json;
+        //     var ethnicityChartData = data.marketData.race;
+        //     var populationChartData = data.marketData.population;
+        //
+        //     drawChart(ethnicityChartData, populationChartData);
+        //   });
+        // });
 
-            drawChart(ethnicityChartData, populationChartData);
-          });
+        $.ajax({
+          url: '/sampledata',
+          dataType: 'json',
+        }).done(function(data) {
+
+          var ethnicityChartData = data.marketData.race;
+          var populationChartData = data.marketData.population;
+
+          drawChart(ethnicityChartData, populationChartData);
+
         });
 
-        // $.ajax({
-        //   url: '/sampledata',
-        //   dataType: 'json',
-        // }).done(function(data) {
+        // var xmlreq = new XMLHttpRequest;
+        // xmlreq.open('GET', '/sampledata');
+        // xmlreq.send();
+        // xmlreq.onreadystatechange = function() {
+        //   if (xmlreq.readyState == 4 && xmlreq.status == 200) {
+        //     var data = xmlreq.response;
         //
-        //   var ethnicityChartData = data.marketData.race;
-        //   var populationChartData = data.marketData.population;
+        //     var ethnicityChartData = data.marketData.race;
+        //     var populationChartData = data.marketData.population;
         //
-        //   drawChart(ethnicityChartData, populationChartData);
-        //
-        // });
+        //     drawChart(ethnicityChartData, populationChartData);
+        //   }
+        // }
 
       }
 
